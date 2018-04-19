@@ -11,7 +11,7 @@
 	localhost:8070/jsp/error/throwException.jsp
 -->
 <%
-	throw new Exception();
+	//throw new Exception();
 %>
 </body>
 </html>
