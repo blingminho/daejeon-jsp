@@ -36,9 +36,13 @@ public class StudentServiceJunit {
 	 */
 	@Test
 	public void getStudentAllTest() {
+		/***Given***/
 		StudentServiceInf service = StudentService.getInstance();
+
+		/***When***/
 		List<StudentVO> resultList = service.getStudentAll();
-		
+
+		/***Then***/
 		assertNotNull(resultList);
 		assertEquals(5, resultList.size());
 		

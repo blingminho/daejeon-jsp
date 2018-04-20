@@ -36,9 +36,13 @@ public class StudentDaoJunit {
 	 */
 	@Test
 	public void getStudentAllTest() {
+		/***Given***/
 		StudentDaoInf dao = StudentDao.getInstance();
+
+		/***When***/
 		List<StudentVO> resultList = dao.getStudentAll();
-		
+
+		/***Then***/
 		assertNotNull(resultList);
 		assertEquals(5, resultList.size());
 
