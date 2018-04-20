@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,8 +50,15 @@ public class LoginServlet extends HttpServlet {
 		UserServiceInf service = new UserService();
 		String userId = request.getParameter("userId");
 		UserVO userVO = new UserVO("", request.getParameter("userId"), request.getParameter("password"));
+		String remember = request.getParameter("remember");
+		System.out.println("remember : " + remember);
 		boolean loginResult = service.loginProcess(userVO);
 		if (loginResult) {
+			//쿠키 설정 파라미터가 넘어온 경우 쿠키값을 설정한다
+			setCookie(remember, userId, response);
+			
+			
+			
 			// as-is : redirect / to-be : dispatch forward
 //			response.sendRedirect("main.jsp");
 			request.setAttribute("userId", userId);
@@ -67,6 +75,29 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("login/login.jsp");
 		}
 		
+	}
+
+	/**
+	 * Method : setCookie
+	 * 최초작성일 : 2018. 4. 20.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param remember
+	 * @param userId
+	 * Method 설명 : 쿠키 값을 설정
+	 */
+	private void setCookie(String remember, String userId, HttpServletResponse response) {
+		//쿠키를 설정하는 경우(remember값이 check인 경우)
+		if (remember != null && remember.equals("true")) {
+			Cookie cookie = new Cookie("userId", userId);
+			cookie.setMaxAge(30*24*60*60);//30일 설정
+			
+			Cookie rememberCookie = new Cookie("remember", "true");
+			rememberCookie.setMaxAge(30*24*60*60);//30일 설정
+			
+			response.addCookie(cookie);
+			response.addCookie(rememberCookie);
+		}
 	}
 
 	/**
