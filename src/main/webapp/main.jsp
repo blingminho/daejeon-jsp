@@ -67,6 +67,17 @@
             <!-- <li class="active"> -->
             <li><a href="<%=request.getContextPath()%>/memberList">멤버 리스트</a></li>
             <li><a href="#">lotto</a></li>
+            <%
+            	Cookie[] cookies = request.getCookies();
+            	/* 
+            	for(Cookie cookie : cookies) {
+		            out.print("<li>" + cookie.getName()  + " : " + cookie.getValue() + "</li>");
+            	}
+            	 */
+            	for(int i=0; i<cookies.length; i++)
+            		out.print("<li>" + cookies[i].getName()  + " : " + cookies[i].getValue() + "</li>");
+            %>
+            
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
