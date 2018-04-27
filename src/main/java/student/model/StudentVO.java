@@ -63,6 +63,9 @@ public class StudentVO {
 				+ ", stud_alias=" + stud_alias + "]";
 	}
 	
-	
+	public StudentVO(String stud_no, String stud_name){
+		this.stud_no = stud_no;
+		this.stud_name = stud_name;
+	}
 
 }
