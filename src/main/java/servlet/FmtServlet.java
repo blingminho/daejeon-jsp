@@ -9,14 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class FmtServlet
- */
 @WebServlet("/fmtServlet")
 public class FmtServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static  final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("FmtServlet doGet 호출");
 		String language = request.getParameter("language");
 		if(language == null)
 			language = "ko";

@@ -17,5 +17,13 @@ business logic<br>
 <tags:colorLogging color="blue"/><br>
 <tags:colorLogging color="blue" length="1"/><br>
 
+<h2>bodyColorLogging</h2>
+<tags:bodyColorLogging color="blue">
+	<c:forEach begin="1" end="10" var="i">
+		<c:out value="${i}"></c:out>
+	</c:forEach>
+</tags:bodyColorLogging>
+
+
 </body>
 </html>

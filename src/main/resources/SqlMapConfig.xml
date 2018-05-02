@@ -47,6 +47,7 @@
 	-->
 	
 	<sqlMap resource="student/dao/student.xml"/>
+	<sqlMap resource="tagDao/prod.xml"/>
 
 </sqlMapConfig>
 
