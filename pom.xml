@@ -24,6 +24,12 @@
 			<artifactId>ibatis-sqlmap</artifactId>
 			<version>2.3.4.726</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.6</version>
+		</dependency>
 
 		<!-- ojdbc -->
 		<dependency>
@@ -52,6 +58,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+
 
 	</dependencies>
 
