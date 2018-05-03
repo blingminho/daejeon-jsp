@@ -36,7 +36,7 @@ public class RequestCountFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		/*전처리*/
-		System.out.println("전처리");
+		System.out.println("RequestCountFilter 전처리");
 		//uri별로 카운팅 횟수를 저장 : 통계 자료 생성
 		HttpServletRequest hsRequest = (HttpServletRequest)request;
 //		System.out.println("doFilter : " + hsRequest.getRequestURI());
@@ -59,7 +59,7 @@ public class RequestCountFilter implements Filter {
 		chain.doFilter(request, response);
 		
 		/*후처리*/
-		System.out.println("후처리");
+		System.out.println("RequestCountFilter 후처리");
 	}
 
 

@@ -24,14 +24,15 @@ public class DefCompCdFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
 		//전처리
+		System.out.println("DefCompCdFilter 전처리");
 		DefCompCdWrapper wrapper = new DefCompCdWrapper((HttpServletRequest)request);
 		wrapper.setDefCompCd((HttpServletRequest)request);
 		
-		chain.doFilter(request, response);
+		chain.doFilter(wrapper, response);
 		
 		//후처리
+		System.out.println("DefCompCdFilter 후처리");
 		
 	}
 }

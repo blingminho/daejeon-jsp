@@ -30,7 +30,7 @@ public class DefCompCdWrapper extends HttpServletRequestWrapper{
 	
 	public DefCompCdWrapper(HttpServletRequest request) {
 		super(request);
-		
+		System.out.println("DefCompCdWrapper 생성자");
 		parameterMap = new HashMap<String, String[]>(request.getParameterMap());
 		
 		
@@ -66,11 +66,11 @@ public class DefCompCdWrapper extends HttpServletRequestWrapper{
 	 * Method 설명 : 회사코드가 parameter에 없을경우 기본 회사코드를 설정해준다.
 	 */
 	public void setDefCompCd(HttpServletRequest request) {
-		
+		System.out.println("DefCompCdWrapper setDefCompCd");
 		//회사코드(name : unt_cd)가 있는지 확인후 없을경우 기본값으로 설정
 		String unt_cd = request.getParameter("unt_cd");
 		
-		if (unt_cd == null)
+		if (unt_cd == null || unt_cd.equals(""))
 			parameterMap.put("unt_cd", new String[]{"DDIT"});
 		
 		
