@@ -1,0 +1,55 @@
+멤버 리스트 조회 페이지
+
+기능목표
+1.데이터베이스에 있는 멤버 정보 조회
+2.페이지당 10건의 멤버를 조회
+3.mybatis 사용
+
+만들어야 할 파일
+mvc pattern
+1.dao(xml), model(vo)
+2.service
+3.servlet(controller)
+4.jsp(화면)
+
+한 일
+1.query 구현
+select *
+from
+(select rownum rn, member.* 
+from member
+order by mem_id)
+where rn > (#page#-1)*#pageSize# and rn < #page#*#pageSize# + 1;
+
+2.mybatis 설정
+3.dao 구현(xml 포함)
+4.dao unit test
+
+멤버리스트 조회
+1.페이지 리스트 조회
+2.하단에 보여줄 페이지 네비게이션
+servlet(controller) --> service.xxxx() --> dao.getUserTotalCnt(), getUserPageList()
+					<-- userList<UserVO>, userTotalCnt로 가공한 페이지 네비게이션 문자열
+
+
+해야할 일
+*** pageNav 로직 구현
+
+사용자 페이지 리스트 조회 서블릿
+3.servlet(controller) 구현
+url : getUserPageList
+class : UserServlet
+
+
+
+
+
+
+
+
+
+
+
+
+
+

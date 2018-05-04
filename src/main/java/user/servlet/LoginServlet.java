@@ -64,6 +64,7 @@ public class LoginServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", userId);
+			session.setAttribute("user", userVO);
 			
 			ServletContext sc = getServletContext();
 			sc.setAttribute("userId", "APPLICATION");

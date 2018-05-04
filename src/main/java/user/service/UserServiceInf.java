@@ -31,5 +31,17 @@ public interface UserServiceInf {
 	 * Method 설명 : 로그인 프로세스
 	 */
 	public boolean loginProcess(UserVO userVO);
-//	public UserVO getUserInfo(Map<String, String> map);
+	
+	/**
+	 * Method : getUserPageList
+	 * 최초작성일 : 2018. 5. 4.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 * Method 설명 : 회원 페이지 list 조회
+	 */
+	public Map<String, Object>getUserPageList(int page, int pageSize);
+	
 }

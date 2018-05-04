@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+	
+	<!-- 회원 페이지 리스트 조회 -->
+	<select id="getUserPageList" parameterType="Map" resultType="UserVO">
+		<!-- 
+		SELECT *
+		FROM(
+		SELECT ROWNUM RN, MEMBER.*
+		FROM MEMBER
+		ORDER BY MEM_ID
+		)
+		WHERE RN BETWEEN (#{page}-1)*#{pageSize}+1 AND #{page}*#{pageSize}
+		 -->
+		 
+		<![CDATA[
+		SELECT *
+		FROM (
+			SELECT ROWNUM as RN, A.*
+			FROM (
+				SELECT *
+				FROM MEMBER
+				ORDER BY MEM_ID) A
+			WHERE ROWNUM <= #{page} * #{pageSize}) B
+		WHERE B.RN >= (#{page}-1) * #{pageSize} + 1
+		]]>
+	</select>
+	
+	<!-- 전체 유저 건수 조회 -->
+	<select id="getUserTotalCnt" resultType="integer" >
+		SELECT COUNT(*)
+		FROM MEMBER
+	</select>
+</mapper>

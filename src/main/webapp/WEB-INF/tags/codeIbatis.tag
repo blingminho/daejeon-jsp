@@ -10,24 +10,17 @@
 <%
 	long startTime = System.currentTimeMillis();
 
-	try {
-		TagsCodeDaoInf dao = TagsCodeDao.getInstance();
-		List<Map<String,String>> list = dao.getProdList(code);
-		Iterator it = list.iterator();
-
-		//출력
-		StringBuilder sb = new StringBuilder();
-		sb.append("<select name='code'>");
-		while(it.hasNext()) {
-			Map<String,String> map = (HashMap<String,String>)it.next();
-			sb.append("<option value='"+ map.get("PROD_ID") +"'>" + map.get("PROD_NAME"));
-		}
-		sb.append("</select>");
-		out.print(sb.toString());
-		
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-
+	TagsCodeDaoInf dao = TagsCodeDao.getInstance();
+	List<Map<String,String>> list = dao.getProdList(code);
+	Iterator it = list.iterator();
+	
+	//출력
+	StringBuilder sb = new StringBuilder();
+	sb.append("<select name='code'>");
+	while(it.hasNext()) {
+		Map<String,String> map = (HashMap<String,String>)it.next();
+		sb.append("<option value='"+ map.get("PROD_ID") +"'>" + map.get("PROD_NAME"));
 	}
+	sb.append("</select>");
+	out.print(sb.toString());
 %>
