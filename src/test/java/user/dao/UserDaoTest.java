@@ -64,6 +64,34 @@ public class UserDaoTest {
 		assertEquals(31, userTotalCnt);
 	}
 	
-	
+	/**
+	 * Method : getUserTest
+	 * 최초작성일 : 2018. 5. 8.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param mem_id
+	 * @return
+	 * Method 설명 : 회원 상세정보 조회 테스트
+	 */
+	@Test
+	public void getUserTest(){
+		/***Given***/
+		UserDaoInf userDao = new UserDao();
+//		String mem_id = "a001";
+//		String mem_name = "김은대";
+//		String mem_pass = "asdfasdf";
+		String mem_id = "ㅋ";
+		String mem_name = "ㅋ";
+		String mem_pass = "z";
+		
+		/***When***/
+		UserVO userVO = userDao.getUser(mem_id);
+		
+		/***Then***/
+		assertNotNull(userVO);
+		assertEquals(mem_id, userVO.getMem_id());
+		assertEquals(mem_name, userVO.getMem_name());
+		assertEquals(mem_pass, userVO.getMem_pass());
+	}
 	
 }

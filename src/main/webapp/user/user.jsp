@@ -1,12 +1,7 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.ibatis.sqlmap.client.SqlMapClient"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -31,69 +26,65 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-<%@include file="/include/commonCss.jsp" %>
-<%@include file="/include/jquery.jsp" %>
-<script type="text/javascript">
-	$(function(){
-		$('tbody').on('click', 'tr', function(){
-			var mem_id = $(this).find('td:eq(0)').text();
-			
-			$('#mem_id').val(mem_id);
-			$('#frm').submit();
-		})
-		
-		//사용자 등록버튼 click 이벤트
-		$('#userReg').on('click', function(){
-			document.location = "${pageContext.request.contextPath }/user/userForm.jsp";
-			
-			
-		})
-		
-	})
-</script>    
 </head>
 <body>
 	<%@include file="/layout/header.jsp"%>
-	
-	<form action="${pageContext.request.contextPath }/getUser" id="frm" method="get">
-		<input type="hidden" id="mem_id" name="mem_id">
-	</form>
-	
 	<div class="container-fluid">
 		<div class="row">
 
 			<%@include file="/layout/left.jsp"%>
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="sub-header">사용자 리스트</h2>
-				<div class="table-responsive">
-					<table class="table table-striped table-hover">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>사용자이름</th>
-								<th>주소1</th>
-								<th>생일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${userList}" var="userVo">
-								<tr>
-									<td>${userVo.mem_id}</td>
-									<td>${userVo.mem_name}</td>
-									<td>${userVo.mem_add1}</td>
-									<td><fmt:formatDate value="${userVo.mem_bir}" pattern="yyyy-MM-dd" /></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-
-				<button id="userReg" type="button" class="btn btn-default">사용자 등록</button>
-				<!--  -->
-				${pageNav }
-	
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
+						<div class="col-sm-10">
+							<label class="control-label">${userVO.mem_id }</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
+						<div class="col-sm-10">
+							<label class="control-label">${userVO.mem_name }</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userNm" class="col-sm-2 control-label">별명</label>
+						<div class="col-sm-10">
+							<label class="control-label">${userVO.mem_alias }</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pass" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10">
+							<label class="control-label">********</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pass" class="col-sm-2 control-label">주소1</label>
+						<div class="col-sm-10">
+							<label class="control-label">${userVO.mem_add1 }</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pass" class="col-sm-2 control-label">주소2</label>
+						<div class="col-sm-10">
+							<label class="control-label">${userVO.mem_add2 }</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pass" class="col-sm-2 control-label">우편번호</label>
+						<div class="col-sm-10">
+							<label class="control-label">${userVO.mem_zip }</label>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">사용자 수정</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

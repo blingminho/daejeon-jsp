@@ -22,7 +22,7 @@
 			SELECT ROWNUM as RN, A.*
 			FROM (
 				SELECT *
-				FROM MEMBER
+				FROM WEBMEMBER
 				ORDER BY MEM_ID) A
 			WHERE ROWNUM <= #{page} * #{pageSize}) B
 		WHERE B.RN >= (#{page}-1) * #{pageSize} + 1
@@ -32,6 +32,14 @@
 	<!-- 전체 유저 건수 조회 -->
 	<select id="getUserTotalCnt" resultType="integer" >
 		SELECT COUNT(*)
-		FROM MEMBER
+		FROM WEBMEMBER
 	</select>
+	
+	<!-- 회원상세정보 조회 -->
+	<select id="getUser" parameterType="String" resultType="UserVO">
+		SELECT *
+		FROM WEBMEMBER
+		WHERE MEM_ID = #{mem_id}
+	</select>
+	
 </mapper>

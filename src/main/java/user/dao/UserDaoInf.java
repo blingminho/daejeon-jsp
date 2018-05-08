@@ -45,5 +45,14 @@ public interface UserDaoInf {
 	 */
 	public int getUserTotalCnt(); 
 	
-	
+	/**
+	 * Method : getUser
+	 * 최초작성일 : 2018. 5. 8.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param mem_id
+	 * @return
+	 * Method 설명 : 회원 상세정보 조회
+	 */
+	public UserVO getUser(String mem_id);
 }

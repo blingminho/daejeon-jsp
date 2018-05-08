@@ -19,6 +19,8 @@ public class UserVO implements HttpSessionBindingListener{
 	private String mem_add2;
 	private String mem_zip;
 	private Date mem_bir;
+	private String mem_alias;
+	private String mem_profile;
 	
 	public UserVO() {
 		super();
@@ -31,12 +33,10 @@ public class UserVO implements HttpSessionBindingListener{
 		this.password = password;
 	}
 	
-	
-	
 
 	public UserVO(String name, String userId, String password, String mem_id,
 			String mem_pass, String mem_name, String mem_add1, String mem_add2,
-			String mem_zip, Date mem_bir) {
+			String mem_zip, Date mem_bir, String mem_alias, String mem_profile) {
 		super();
 		this.name = name;
 		this.userId = userId;
@@ -48,6 +48,8 @@ public class UserVO implements HttpSessionBindingListener{
 		this.mem_add2 = mem_add2;
 		this.mem_zip = mem_zip;
 		this.mem_bir = mem_bir;
+		this.mem_alias = mem_alias;
+		this.mem_profile = mem_profile;
 	}
 
 	public String getMem_id() {
@@ -131,7 +133,8 @@ public class UserVO implements HttpSessionBindingListener{
 				+ password + ", mem_id=" + mem_id + ", mem_pass=" + mem_pass
 				+ ", mem_name=" + mem_name + ", mem_add1=" + mem_add1
 				+ ", mem_add2=" + mem_add2 + ", mem_zip=" + mem_zip
-				+ ", mem_bir=" + mem_bir + "]";
+				+ ", mem_bir=" + mem_bir + ", mem_alias=" + mem_alias
+				+ ", mem_profile=" + mem_profile + "]";
 	}
 	
 	/**
@@ -159,6 +162,22 @@ public class UserVO implements HttpSessionBindingListener{
 	public void valueUnbound(HttpSessionBindingEvent event) {
 		System.out.println("valueUnbound : " + event.getName());
 		
+	}
+
+	public String getMem_alias() {
+		return mem_alias;
+	}
+
+	public void setMem_alias(String mem_alias) {
+		this.mem_alias = mem_alias;
+	}
+
+	public String getMem_profile() {
+		return mem_profile;
+	}
+
+	public void setMem_profile(String mem_profile) {
+		this.mem_profile = mem_profile;
 	}
 	
 }

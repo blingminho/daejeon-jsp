@@ -33,6 +33,7 @@ import user.model.UserVO;
 public class UserDao implements UserDaoInf {
 	
 	private SqlSessionFactory sqlSessionFactory;
+	private SqlSession sqlSession;
 	
 	public UserDao(){
 		String resource = "db/mybatis/mybatis-config.xml";
@@ -64,7 +65,11 @@ public class UserDao implements UserDaoInf {
 		paramMap.put("page", page);
 		paramMap.put("pageSize", pageSize);
 		
-		return sqlSessionFactory.openSession().selectList("user.getUserPageList", paramMap);
+		sqlSession = sqlSessionFactory.openSession();
+		List<UserVO> userList = sqlSession.selectList("user.getUserPageList", paramMap);
+		sqlSession.close();
+		
+		return userList;
 	}
 
 	/**
@@ -77,6 +82,28 @@ public class UserDao implements UserDaoInf {
 	 */
 	@Override
 	public int getUserTotalCnt() {
-		return sqlSessionFactory.openSession().selectOne("user.getUserTotalCnt");
+		sqlSession = sqlSessionFactory.openSession();
+		int userTotalCnt = sqlSession.selectOne("user.getUserTotalCnt");
+		sqlSession.close();
+		
+		return userTotalCnt;
+	}
+
+	/**
+	 * Method : getUser
+	 * 최초작성일 : 2018. 5. 8.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param mem_id
+	 * @return
+	 * Method 설명 : 회원 상세정보 조회
+	 */
+	@Override
+	public UserVO getUser(String mem_id) {
+		sqlSession = sqlSessionFactory.openSession();
+		UserVO userVO = sqlSession.selectOne("user.getUser", mem_id);
+		sqlSession.close();
+		
+		return userVO;
 	}
 }
