@@ -35,6 +35,8 @@ public class RequestCountFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		request.setCharacterEncoding("UTF-8");
+		
 		/*전처리*/
 		System.out.println("RequestCountFilter 전처리");
 		//uri별로 카운팅 횟수를 저장 : 통계 자료 생성

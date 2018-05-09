@@ -24,6 +24,8 @@ public class DefCompCdFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		request.setCharacterEncoding("UTF-8");
+		
 		//전처리
 		System.out.println("DefCompCdFilter 전처리");
 		DefCompCdWrapper wrapper = new DefCompCdWrapper((HttpServletRequest)request);
