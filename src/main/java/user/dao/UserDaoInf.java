@@ -55,4 +55,15 @@ public interface UserDaoInf {
 	 * Method 설명 : 회원 상세정보 조회
 	 */
 	public UserVO getUser(String mem_id);
+
+	/**
+	 * Method : insertUser
+	 * 최초작성일 : 2018. 5. 9.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param userVO
+	 * Method 설명 : 사용자 신규 입력
+	 * @return 
+	 */
+	public int insertUser(UserVO userVO);
 }

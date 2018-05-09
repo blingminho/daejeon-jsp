@@ -106,4 +106,23 @@ public class UserDao implements UserDaoInf {
 		
 		return userVO;
 	}
+
+	/**
+	 * Method : insertUser
+	 * 최초작성일 : 2018. 5. 9.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param userVO
+	 * Method 설명 : 사용자 신규 입력
+	 * @return 
+	 */
+	@Override
+	public int insertUser(UserVO userVO) {
+		sqlSession = sqlSessionFactory.openSession();
+		int insertCnt = sqlSession.insert("user.insertUser", userVO);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return insertCnt;
+	}
 }

@@ -94,4 +94,25 @@ public class UserDaoTest {
 		assertEquals(mem_pass, userVO.getMem_pass());
 	}
 	
+	/**
+	 * Method : insertUserTest
+	 * 최초작성일 : 2018. 5. 9.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * Method 설명 : 신규 회원 입력 테스트
+	 */
+	@Test
+	public void insertUserTest(){
+		/***Given***/
+		UserDaoInf userDao = new UserDao();
+		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940");
+		
+		/***When***/
+		int insertCnt = userDao.insertUser(userVO);
+
+		/***Then***/
+		assertEquals(1, insertCnt);
+	}
+	
+	
 }

@@ -114,5 +114,19 @@ public class UserService implements UserServiceInf{
 	public UserVO getUser(String mem_id) {
 		return userDao.getUser(mem_id);
 	}
+
+	/**
+	 * Method : insertUser
+	 * 최초작성일 : 2018. 5. 9.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param userVO
+	 * Method 설명 : 사용자 신규 입력
+	 * @return 
+	 */
+	@Override
+	public int insertUser(UserVO userVO) {
+		return userDao.insertUser(userVO);
+	}
 	
 }
