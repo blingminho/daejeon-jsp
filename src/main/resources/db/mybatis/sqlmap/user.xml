@@ -44,7 +44,27 @@
 
 	<!-- 가입 -->
 	<insert id="insertUser" parameterType="UserVO">
-		INSERT INTO WEBMEMBER (MEM_ID,MEM_PASS,MEM_NAME,MEM_ADD1,MEM_ADD2,MEM_ZIP,MEM_ALIAS)
-		VALUES (#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_add1}, #{mem_add2}, #{mem_zip}, #{mem_alias})
+		INSERT INTO WEBMEMBER (MEM_ID,MEM_PASS,MEM_NAME,MEM_ADD1,MEM_ADD2,MEM_ZIP,MEM_ALIAS, MEM_PROFILE)
+		VALUES (#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_add1}, #{mem_add2}, #{mem_zip}, #{mem_alias}, #{mem_profile})
 	</insert>
+	
+	<!-- 기존 사용자 삭제 -->
+	<delete id="deleteUser" parameterType="UserVO">
+		DELETE FROM WEBMEMBER
+		WHERE MEM_ID = #{mem_id}
+	</delete>
+	
+	<!-- 기존 사용자 정보 수정 -->
+	<update id="modifyUser" parameterType="UserVO">
+		UPDATE WEBMEMBER
+			SET 
+			    MEM_PASS = #{mem_pass},
+			    MEM_NAME = #{mem_name},
+			    MEM_ADD1 = #{mem_add1},
+			    MEM_ADD2 = #{mem_add2},
+			    MEM_ZIP = #{mem_zip},
+			    MEM_ALIAS = #{mem_alias},
+			    MEM_PROFILE = #{mem_profile}
+		WHERE MEM_ID = #{mem_id}
+	</update>
 </mapper>

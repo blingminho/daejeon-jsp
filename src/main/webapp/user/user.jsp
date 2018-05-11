@@ -17,15 +17,39 @@
 
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/dashboard.css" rel="stylesheet">
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="bootstrap/js/ie-emulation-modes-warning.js"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<%@include file="/include/jquery.jsp" %>
+<style type="text/css">
+img {
+	width: 200px;
+	height: 200px;
+}
+</style>
+<script type="text/javascript">
+$(function(){
+	//회원 정보 삭제 버튼 클릭 이벤트 : 삭제 발생 (post)
+	//method : get : 조회할때, post : 서버상에 변경이 일어날때
+	$('#deleteUser').on('click', function(){
+		//method : post
+		//action : /deleteUser
+		$('#frm').attr('method', 'post');
+		$('#frm').attr('action', '${pageContext.request.contextPath }/deleteUser');
+		$('#frm').submit();
+		
+	})
+	
+	//회원 정보 수정 버튼 클릭 이벤트 : 회원 수정 화면으로 이동 (get)
+	$('#modifyUser').on('click', function(){
+		//method : post
+		//action : /modifyUser
+		$('#frm').attr('method', 'get');
+		$('#frm').attr('action', '${pageContext.request.contextPath }/modifyUser');
+		$('#frm').submit();
+		
+		
+	})
+	
+})
+</script>
 </head>
 <body>
 	<%@include file="/layout/header.jsp"%>
@@ -35,7 +59,14 @@
 			<%@include file="/layout/left.jsp"%>
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" id="frm" method="post">
+					<input type="hidden" name="mem_id" value="${userVO.mem_id }">
+					<div class="form-group">
+						<label for="userProfile" class="col-sm-2 control-label">사용자 profile</label>
+						<div class="col-sm-10">
+							<img alt="${userVO.mem_profile }" src="${pageContext.request.contextPath }${userVO.mem_profile }">
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
@@ -81,7 +112,8 @@
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">사용자 수정</button>
+							<button type="button" id="modifyUser" class="btn btn-default">사용자 수정</button>
+							<button type="button" id="deleteUser" class="btn btn-default">사용자 삭제</button>
 						</div>
 					</div>
 				</form>
@@ -94,8 +126,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 	<script src="holder.js"></script>

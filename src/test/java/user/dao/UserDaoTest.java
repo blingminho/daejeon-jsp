@@ -105,7 +105,7 @@ public class UserDaoTest {
 	public void insertUserTest(){
 		/***Given***/
 		UserDaoInf userDao = new UserDao();
-		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940");
+		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940", "");
 		
 		/***When***/
 		int insertCnt = userDao.insertUser(userVO);
@@ -114,5 +114,50 @@ public class UserDaoTest {
 		assertEquals(1, insertCnt);
 	}
 	
+	/**
+	 * Method : deleteUserTest
+	 * 최초작성일 : 2018. 5. 10.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 기존 사용자 삭제 테스트
+	 */
+	@Test
+	public void deleteUserTest(){
+		/***Given***/
+		UserDaoInf userDao = new UserDao();
+		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940", "");
+		
+		/***When***/
+		int deleteCnt = userDao.deleteUser(userVO);
+		
+		/***Then***/
+		assertEquals(1, deleteCnt);
+		
+	}
+
+	/**
+	 * Method : modifyUserTest
+	 * 최초작성일 : 2018. 5. 11.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * Method 설명 : 기존 사용자 정보 수정 테스트
+	 */
+	@Test
+	public void modifyUserTest(){
+		/***Given***/
+		UserDaoInf userDao = new UserDao();
+		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940", "dd");
+
+		/***When***/
+		int updateCnt = userDao.modifyUser(userVO);
+		
+		/***Then***/
+		assertEquals(1, updateCnt);
+		UserVO updateUser = userDao.getUser(userVO.getMem_id());
+		assertEquals(userVO.getMem_alias(), updateUser.getMem_alias());
+		
+	}
 	
 }

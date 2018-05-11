@@ -84,18 +84,84 @@ public class UserServiceTest {
 	@Test
 	public void getUserTest(){
 		/***Given***/
-		UserServiceInf service = new UserService();
+		UserServiceInf userService = new UserService();
 		String mem_id = "a001";
 		String mem_name = "김은대";
 		String mem_pass = "asdfasdf";
 		
 		/***When***/
-		UserVO userVO = service.getUser(mem_id);
+		UserVO userVO = userService.getUser(mem_id);
 		
 		/***Then***/
 		assertNotNull(userVO);
 		assertEquals(mem_id, userVO.getMem_id());
 		assertEquals(mem_name, userVO.getMem_name());
 		assertEquals(mem_pass, userVO.getMem_pass());
+	}
+	
+	/**
+	 * Method : insertUserTest
+	 * 최초작성일 : 2018. 5. 9.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * Method 설명 : 신규 회원 입력 테스트
+	 */
+	@Test
+	public void insertUserTest(){
+		/***Given***/
+		UserServiceInf userService = new UserService();
+		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940", "");
+		
+		/***When***/
+		int insertCnt = userService.insertUser(userVO);
+
+		/***Then***/
+		assertEquals(1, insertCnt);
+	}
+	
+	/**
+	 * Method : deleteUserTest
+	 * 최초작성일 : 2018. 5. 10.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 기존 사용자 삭제 테스트
+	 */
+	@Test
+	public void deleteUserTest(){
+		/***Given***/
+		UserServiceInf userService = new UserService();
+		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940", "");
+		
+		/***When***/
+		int deleteCnt = userService.deleteUser(userVO);
+		
+		/***Then***/
+		assertEquals(1, deleteCnt);
+		
+	}
+	
+	/**
+	 * Method : modifyUserTest
+	 * 최초작성일 : 2018. 5. 11.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * Method 설명 : 기존 사용자 정보 수정 테스트
+	 */
+	@Test
+	public void modifyUserTest(){
+		/***Given***/
+		UserDaoInf userDao = new UserDao();
+		UserVO userVO = new UserVO("sally", "샐리", "병아리", "1234", "대전 중구 중앙로 76", "영민빌딩 2층", "34940", "dd");
+
+		/***When***/
+		int updateCnt = userDao.modifyUser(userVO);
+		
+		/***Then***/
+		assertEquals(1, updateCnt);
+		UserVO updateUser = userDao.getUser(userVO.getMem_id());
+		assertEquals(userVO.getMem_alias(), updateUser.getMem_alias());
+		
 	}
 }

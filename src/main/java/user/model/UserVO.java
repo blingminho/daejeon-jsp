@@ -43,6 +43,18 @@ public class UserVO implements HttpSessionBindingListener{
 		this.mem_add2 = mem_add2;
 		this.mem_zip = mem_zip;
 	}
+	
+	public UserVO(String mem_id, String mem_name, String mem_alias, String mem_pass, String mem_add1, String mem_add2, String mem_zip, String mem_profile) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_name = mem_name;
+		this.mem_alias = mem_alias;
+		this.mem_pass = mem_pass;
+		this.mem_add1 = mem_add1;
+		this.mem_add2 = mem_add2;
+		this.mem_zip = mem_zip;
+		this.mem_profile = mem_profile;
+	}
 
 	public UserVO(String name, String userId, String password, String mem_id,
 			String mem_pass, String mem_name, String mem_add1, String mem_add2,

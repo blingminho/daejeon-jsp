@@ -129,4 +129,32 @@ public class UserService implements UserServiceInf{
 		return userDao.insertUser(userVO);
 	}
 	
+	/**
+	 * Method : deleteUser
+	 * 최초작성일 : 2018. 5. 10.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 기존 사용자 삭제
+	 */
+	@Override
+	public int deleteUser(UserVO userVO) {
+		return userDao.deleteUser(userVO);
+	}
+
+	/**
+	 * Method : modifyUser
+	 * 최초작성일 : 2018. 5. 11.
+	 * 작성자 : "K.S.J"
+	 * 변경이력 :
+	 * @param userVO
+	 * @return
+	 * Method 설명 : 기존 사용자 정보 수정
+	 */
+	@Override
+	public int modifyUser(UserVO userVO) {
+		return userDao.modifyUser(userVO);
+	}
+	
 }
